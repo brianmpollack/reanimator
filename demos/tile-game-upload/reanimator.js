@@ -477,9 +477,6 @@ function capture(upload, uuid, config) {
       return v.toString(16);
   }); //Generate random UUID if not provided
 
-  console.log(upload);
-  console.log(uuid);
-
   this.state.log = this.log = {
     events: []
   };
@@ -491,9 +488,7 @@ function capture(upload, uuid, config) {
   var self = this;
 
 if(uploading) {
-  console.log("Uploading...");
   window.setInterval(function(){
-    console.log("Timer uploading");
     $.ajax({
     url: "./reanimator.php",
     type: "POST",

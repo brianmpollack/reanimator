@@ -465,9 +465,17 @@ if (!Function.prototype.bind) {
   };
 }
 
-function capture(config) {
+function capture(upload, uuid, config) {
   this.state.capturing = true;
   this.state.config = config || {};
+
+
+
+  var uploading = upload || false;
+  var uuid = uuid || 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+  }); //Generate random UUID if not provided
 
   this.state.log = this.log = {
     events: []
@@ -476,6 +484,20 @@ function capture(config) {
   for (var k in plugins) {
     plugins[k].capture(this.state.log, config);
   }
+
+  var self = this;
+
+if(uploading) {
+  window.setInterval(function(){
+    $.ajax({
+    url: "./reanimator.php",
+    type: "POST",
+    data: {"uuid": uuid, "log": JSON.stringify(self.flush())},
+    dataType: "html"
+    });
+  }, 5000); //Upload every 5 seconds
+
+}
 }
 
 function replay(log, config) {
@@ -593,7 +615,8 @@ function serializer(replacer, cycleReplacer) {
 module.exports = global.Reanimator = {
   state: {
     capturing: false,
-    replaying: false
+    replaying: false,
+    uploading: false
   },
 
   /**

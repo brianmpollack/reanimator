@@ -124,7 +124,7 @@ $(document).ready(function () {
       across: 3,
       down: 3,
       width: 100,
-      height: 100 
+      height: 100
     }
   };
 
@@ -138,7 +138,7 @@ $(document).ready(function () {
     });
   } else {
     setTimeout(function () {
-      Reanimator.capture();
+      Reanimator.capture(true);
       init(config);
     }, 0);
   }
