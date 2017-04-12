@@ -36,18 +36,7 @@
     and made available under an <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">Attribution-Noncommercial-No Derivative Works 3.0 License</a>.
   </p>
   <iframe class="source" src="game.html"></iframe>
-  <button class="reanimate">Reanimate!</button>
-  <iframe class="target" src="game.html?replay"></iframe>
+  <p>When you are ready to reanimate, <a href="reanimate.php">click here</a> to view all available sessions.</p>
   <script src='reanimator-jquery.3.2.0.js'></script>
-  <script>
-    $(document).ready(function () {
-      var source = window.sourceFrame = $('iframe.source')[0].contentWindow;
-      var target = window.targetFrame = $('iframe.target')[0].contentWindow;
-
-      $('.reanimate').on('click', function () {
-        target.postMessage(JSON.stringify(source.Reanimator.flush()), '*');
-      });
-    });
-  </script>
 </body>
 </html>
