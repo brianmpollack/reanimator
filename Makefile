@@ -9,12 +9,18 @@ SERVER_PID_FILE := $(PWD)/$(shell echo ".test-server-pid.$$RANDOM")
 PHANTOM_PID_FILE := $(PWD)/$(shell echo ".phantom-pid.$$RANDOM")
 JS_FILES = $(shell find lib -name "*.js" -type f)
 
-all: dist/reanimator.js dist/reanimator-jquery.3.2.0.js
+all: dist/reanimator.js dist/reanimator-jquery.3.2.0.js dist/reanimator.php dist/database_credentials.php
 		cp dist/reanimator.js demos/tile-game/js
 		cp dist/reanimator-jquery.3.2.0.js demos/tile-game/js
 
 clean:
-	rm -f dist/*.js
+	rm -f dist/*
+
+dist/reanimator.php:
+	cp lib/reanimator/reanimator.php dist/reanimator.php
+
+dist/database_credentials.php:
+	cp lib/reanimator/database_credentials.php dist/database_credentials.php
 
 dist/reanimator.js: $(JS_FILES) app.build.js
 	@node node_modules/.bin/r.js -o app.build.js
