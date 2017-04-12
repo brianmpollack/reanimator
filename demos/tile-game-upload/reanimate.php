@@ -60,15 +60,19 @@ if(!$logs) {
   </select>
   <br>
   <button class="reanimate">Reanimate!</button>
-  <iframe class="target" src="game.html?replay"></iframe>
+  <iframe id="target" class="target" src="game.html?replay"></iframe>
   <script src='reanimator-jquery.3.2.0.js'></script>
   <script>
     $(document).ready(function () {
       var target = window.targetFrame = $('iframe.target')[0].contentWindow;
 
-      $('.reanimate').on('click', function () {
-        console.log($("#logs").val());
+      $('#target').on('load', function(){
         target.postMessage($("#logs").val(), '*');
+      });
+
+      $('.reanimate').on('click', function () {
+
+        $('#target').attr('src', 'game.html?replay');
       });
     });
   </script>
