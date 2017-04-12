@@ -38,9 +38,9 @@ if(!$logs) {
     }
 
     button, select {
-      font-size: .5em;
+      font-size: 1em;
       margin: .5em auto;
-      padding: .5em;
+      padding: 1em;
     }
   </style>
 </head>
