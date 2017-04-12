@@ -9,9 +9,17 @@ SERVER_PID_FILE := $(PWD)/$(shell echo ".test-server-pid.$$RANDOM")
 PHANTOM_PID_FILE := $(PWD)/$(shell echo ".phantom-pid.$$RANDOM")
 JS_FILES = $(shell find lib -name "*.js" -type f)
 
-all: dist/reanimator.js dist/reanimator-jquery.3.2.0.js dist/reanimator.php dist/database_credentials.php
-		cp dist/reanimator.js demos/tile-game/js
-		cp dist/reanimator-jquery.3.2.0.js demos/tile-game/js
+all: dist/reanimator.js dist/reanimator-jquery.3.2.0.js dist/reanimator.php dist/database_credentials.php tile-game tile-game-upload
+
+tile-game:
+	cp dist/reanimator.js demos/tile-game/js
+	cp dist/reanimator-jquery.3.2.0.js demos/tile-game/js
+
+tile-game-upload:
+	cp dist/reanimator.js demos/tile-game-upload
+	cp dist/reanimator-jquery.3.2.0.js demos/tile-game-upload
+	cp dist/reanimator.php demos/tile-game-upload
+	cp dist/database_credentials.php demos/tile-game-upload
 
 clean:
 	rm -f dist/*
