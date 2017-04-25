@@ -33,7 +33,7 @@ Howell](http://research.microsoft.com/en-us/people/howell/).
 
 # API
 
-## Reanimator.capture(upload, uuid, config)
+## Reanimator.capture
 **Capture non-deterministic input**
 
 ### Arguments
