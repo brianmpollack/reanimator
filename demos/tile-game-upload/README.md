@@ -1,6 +1,6 @@
 # Tile Game - Upload Input to Server
 
-This version of the tile game will capture a user's input and upload to a JQuery webservice.
+This version of the tile game will capture a user's input and upload to a HTTP POST webservice.
 
 ## Using the Demo
 
