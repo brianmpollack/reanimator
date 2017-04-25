@@ -16,7 +16,9 @@ Reanimator ships with plugins for capturing and replaying random numbers, dates,
 and timer interrupts. In addition, Reanimator provides plugins for capturing and
 replaying callback invocations in the following frameworks:
 
-- jQuery 1.8.3
+- jQuery 3.2.0
+
+Reanimator will upload captured logs to an HTTP POST webservice.
 
 Reanimator was inspired by
 [Mugshot](http://research.microsoft.com/apps/pubs/default.aspx?id=120937) by
@@ -26,12 +28,26 @@ Howell](http://research.microsoft.com/en-us/people/howell/).
 
 ## Demos
 
-[Tile game](http://waterfallengineering.github.com/reanimator/tile-game/index.html)
+[Tile game](demos/tile-game)
+[Tile game - upload to server](demos/tile-game-upload)
 
 # API
 
-## Reanimator.capture
+## Reanimator.capture(upload, uuid, config)
 **Capture non-deterministic input**
+
+### Arguments
+
+- `upload` - *boolean* - true to upload log to webserver
+- `uuid` - *string* - UUID for client. If not set, Reanimator will generate one randomly.
+- `config` - *object* - configuration object
+  - `config.delay` - *string* | *integer* - how long Reanimator should wait
+    before replaying the next event in the log
+
+      For a fixed delay, specify the number of ms between steps (the
+      default is 0). If the string `'realtime'` is specified, Reanimator
+      will make a good faith effort to replay the events with the actual
+      delays recorded in the log.
 
 Call this method to begin logging non-deterministic input to your
 JavaScript application. To capture a useful log, you must call
@@ -50,7 +66,7 @@ The log is reset whenever this method is called.
 - `config` - *object* - configuration object
   - `config.delay` - *string* | *integer* - how long Reanimator should wait
     before replaying the next event in the log
-      
+
       For a fixed delay, specify the number of ms between steps (the
       default is 0). If the string `'realtime'` is specified, Reanimator
       will make a good faith effort to replay the events with the actual
