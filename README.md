@@ -29,6 +29,7 @@ Howell](http://research.microsoft.com/en-us/people/howell/).
 ## Demos
 
 [Tile game](demos/tile-game)
+
 [Tile game - upload to server](demos/tile-game-upload)
 
 # API
@@ -136,6 +137,9 @@ A plugin is an object that implements the following methods:
     Arguments
   - `event` - *object* - the event to replay, in the format specified above
     in `Reanimator.flush`
+
+# Server Uploads
+Reanimator can upload its log to a webserver via HTTP POST requests. By default, it will POST its log and UUID to ./reanimator.php. Please modify this file to suit your needs/server configuration. There is a sample database configuration (that matches the default reanimator.php implementation) in the [uploading tile demo](demos/tile-game-upload).
 
 # License
 
